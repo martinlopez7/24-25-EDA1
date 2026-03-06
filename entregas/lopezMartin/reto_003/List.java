@@ -52,20 +52,6 @@ public class List {
         return list;
     }
 
-    public Node obtenerUltimo(){
-        
-        if (this.first == null) {
-        return null;
-        }  
-    
-        Node iterator = this.first;
-        while (iterator.getNext() != null) {
-            iterator = iterator.getNext();
-        }
-    
-        return iterator;
-    }
-
     public String getIndiceOf(String value) {
         
         Node iterator = this.first;
