@@ -125,7 +125,7 @@ public class Spotify {
                                 if(cancionesDisponibles[idCancionAñadir-1].esFavorita()){
                                     System.out.println("Ya tienes esta cancion en favoritos.");
                                 }else{
-                                    cancionesDisponibles[idCancionAñadir-1].setFavorita();
+                                    cancionesDisponibles[idCancionAñadir-1].setFavorita(true);
                                 }
                                 break;
                                 
@@ -136,7 +136,7 @@ public class Spotify {
                                 if(!cancionesDisponibles[idCancionEliminar-1].esFavorita()){
                                     System.out.println("Esta cancion no la tienes en favoritos.");
                                 }else{
-                                    cancionesDisponibles[idCancionEliminar-1].unsetFavorita();
+                                    cancionesDisponibles[idCancionEliminar-1].setFavorita(false);
                                 }
                                 break;
 

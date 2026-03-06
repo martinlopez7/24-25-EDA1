@@ -30,12 +30,8 @@ public class Cancion {
 
     }
 
-    public void setFavorita(){
-        this.favorita = true;
-    }
-
-    public void unsetFavorita(){
-        this.favorita = false;
+    public void setFavorita(boolean favorita){
+        this.favorita = favorita;
     }
 
     public boolean esFavorita(){
