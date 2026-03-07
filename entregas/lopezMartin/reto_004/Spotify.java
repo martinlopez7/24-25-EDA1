@@ -8,25 +8,26 @@ public class Spotify {
 
         Scanner sc = new Scanner(System.in);
         Cancion[] cancionesDisponibles = {
-            new Cancion(1, "Bitcoin", "LEÏTI", 187),
-            new Cancion(2, "La vida padre", "ToteKing", 147),
-            new Cancion(3, "R.I.P", "Playboi Carti", 192),
-            new Cancion(4, "redrum", "21 Savage", 271),
-            new Cancion(5, "LENNY", "ABHIR", 129),
-            new Cancion(6, "Mandaloriano", "JohnPo", 179),
-            new Cancion(7, "Marlboro Nights", "Lonely God", 69),
-            new Cancion(8, "20 Min", "Lil Uzi Vert", 221),
-            new Cancion(9, "If we beeing rëal", "Yeat", 173),
-            new Cancion(10, "Capo", "NLE Choppa", 192)
+                new Cancion(1, "Bitcoin", "LEÏTI", 187),
+                new Cancion(2, "La vida padre", "ToteKing", 147),
+                new Cancion(3, "R.I.P", "Playboi Carti", 192),
+                new Cancion(4, "redrum", "21 Savage", 271),
+                new Cancion(5, "LENNY", "ABHIR", 129),
+                new Cancion(6, "Mandaloriano", "JohnPo", 179),
+                new Cancion(7, "Marlboro Nights", "Lonely God", 69),
+                new Cancion(8, "20 Min", "Lil Uzi Vert", 221),
+                new Cancion(9, "If we beeing rëal", "Yeat", 173),
+                new Cancion(10, "Capo", "NLE Choppa", 192)
         };
         ListaPlaylists playlists = new ListaPlaylists();
         Reproductor reproductor = new Reproductor(cancionesDisponibles);
-        
-        while(true){
+
+        boolean ejecutando = true;
+        while (ejecutando) {
             System.out.println("\n=== SPOTIFY === \n");
             System.out.println("BIBLIOTECA INICIAL \n");
             System.out.println("Canciones disponibles: \n");
-            for(int i= 0; i<cancionesDisponibles.length;i++){
+            for (int i = 0; i < cancionesDisponibles.length; i++) {
                 System.out.println(cancionesDisponibles[i].toString());
             }
             System.out.println("\n=== MENÚ PRINCIPAL ===");
@@ -35,10 +36,10 @@ public class Spotify {
             System.out.println("3. Salir \n");
             System.out.println("Seleccione una opción:");
             int eleccionMenuPrincipal = sc.nextInt();
-            switch(eleccionMenuPrincipal) {
+            switch (eleccionMenuPrincipal) {
                 case 1:
                     boolean enReproduccion = true;
-                    while(enReproduccion){
+                    while (enReproduccion) {
                         System.out.println("\n=== MENÚ REPRODUCCIÓN ===");
                         System.out.println("1. Ver canción actual");
                         System.out.println("2. Reproducir siguiente");
@@ -51,20 +52,20 @@ public class Spotify {
                         System.out.println("9. Volver al menú principal");
                         System.out.println("\nSeleccione una opción:");
                         int eleccionMenuReproduccion = sc.nextInt();
-                        switch (eleccionMenuReproduccion){
+                        switch (eleccionMenuReproduccion) {
                             case 1:
                                 Cancion actual = reproductor.getCancionActual();
                                 if (actual != null) {
                                     reproductor.reproducirCancion(actual);
-                                }else{
+                                } else {
                                     System.out.println("No hay canción en reproducción.");
                                     System.out.println("¿Desea comenzar a reproducir? (S/N): ");
                                     String respuesta = sc.next();
-                                    if(respuesta.equalsIgnoreCase("S")) {
+                                    if (respuesta.equalsIgnoreCase("S")) {
                                         System.out.println("Seleccione canción (1-10):");
                                         int idCancion = sc.nextInt();
                                         assert idCancion >= 1 && idCancion <= 10;
-                                        reproductor.reproducirCancion(cancionesDisponibles[idCancion-1]);
+                                        reproductor.reproducirCancion(cancionesDisponibles[idCancion - 1]);
                                     }
                                 }
                                 break;
@@ -96,15 +97,15 @@ public class Spotify {
                                 enReproduccion = false;
                                 break;
                             default:
-                            System.out.println("Elección inválida, intente de nuevo");
+                                System.out.println("Elección inválida, intente de nuevo");
                         }
                     }
-                    
+
                     break;
 
                 case 2:
                     boolean enBiblioteca = true;
-                    while(enBiblioteca){
+                    while (enBiblioteca) {
                         System.out.println("\n=== MENÚ BIBLIOTECA ===");
                         System.out.println("1. Añadir canción a favoritos");
                         System.out.println("2. Eliminar canción de favoritos");
@@ -121,27 +122,27 @@ public class Spotify {
                             case 1:
                                 System.out.println("\nSeleccione la cancion que desea añadir a favoritos (1-10):");
                                 int idCancionAñadir = sc.nextInt();
-                                assert idCancionAñadir >=1 && idCancionAñadir <=10;
-                                if(cancionesDisponibles[idCancionAñadir-1].esFavorita()){
+                                assert idCancionAñadir >= 1 && idCancionAñadir <= 10;
+                                if (cancionesDisponibles[idCancionAñadir - 1].esFavorita()) {
                                     System.out.println("Ya tienes esta cancion en favoritos.");
-                                }else{
-                                    cancionesDisponibles[idCancionAñadir-1].setFavorita();
+                                } else {
+                                    cancionesDisponibles[idCancionAñadir - 1].setFavorita();
                                 }
                                 break;
-                                
+
                             case 2:
                                 System.out.println("\nSeleccione la cancion que desea eliminar de favoritos (1-10):");
                                 int idCancionEliminar = sc.nextInt();
-                                assert idCancionEliminar >=1 && idCancionEliminar <=10;
-                                if(!cancionesDisponibles[idCancionEliminar-1].esFavorita()){
+                                assert idCancionEliminar >= 1 && idCancionEliminar <= 10;
+                                if (!cancionesDisponibles[idCancionEliminar - 1].esFavorita()) {
                                     System.out.println("Esta cancion no la tienes en favoritos.");
-                                }else{
-                                    cancionesDisponibles[idCancionEliminar-1].unsetFavorita();
+                                } else {
+                                    cancionesDisponibles[idCancionEliminar - 1].unsetFavorita();
                                 }
                                 break;
 
                             case 3:
-                                for(int i = 0;i<cancionesDisponibles.length;i++){
+                                for (int i = 0; i < cancionesDisponibles.length; i++) {
                                     if (cancionesDisponibles[i].esFavorita()) {
                                         System.out.println(cancionesDisponibles[i].toString());
                                     }
@@ -160,12 +161,12 @@ public class Spotify {
                                     System.out.println("\nSeleccione una playlist");
                                     int playlistID = sc.nextInt();
                                     System.out.println("Canciones disponibles: \n");
-                                    for(int i= 0; i<cancionesDisponibles.length;i++){
+                                    for (int i = 0; i < cancionesDisponibles.length; i++) {
                                         System.out.println(cancionesDisponibles[i].toString());
                                     }
                                     System.out.println("\nSeleccione canción a añadir: ");
                                     int idCancion = sc.nextInt();
-                                    playlists.encontrar(playlistID).añadirCancion(cancionesDisponibles[idCancion-1]);
+                                    playlists.encontrar(playlistID).añadirCancion(cancionesDisponibles[idCancion - 1]);
                                 }
                                 break;
                             case 6:
@@ -178,7 +179,7 @@ public class Spotify {
                                     System.out.println(playlist.mostrar());
                                     System.out.println("\nSeleccione canción para eliminar: ");
                                     int idCancion = sc.nextInt();
-                                    playlist.eliminarCancion(cancionesDisponibles[idCancion-1]);
+                                    playlist.eliminarCancion(cancionesDisponibles[idCancion - 1]);
                                 }
                                 break;
                             case 7:
@@ -196,11 +197,11 @@ public class Spotify {
                                     } else {
                                         System.out.println("No se encontró la playlist con ID: " + playlistID);
                                     }
-                                }else{
+                                } else {
                                     System.out.println("No hay playlists existentes");
                                 }
                                 break;
-                            
+
                             case 9:
                                 enBiblioteca = false;
                                 break;
@@ -209,15 +210,15 @@ public class Spotify {
                         }
                     }
                     break;
-                    
+
                 case 3:
-                    return;
+                    ejecutando = false;
+                    break;
                 default:
                     System.out.println("Elección inválida, intente de nuevo");
             }
         }
-        
-        
+
     }
-    
+
 }
